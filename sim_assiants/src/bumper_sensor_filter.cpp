@@ -48,6 +48,7 @@ private:
         lf_foot_contact_.surface_normal.vector = contact_state->states[0].contact_normals[0];
         lf_foot_contact_.contact_position.vector = contact_state->states[0].contact_positions[0];
         lf_foot_contact_.contact_position.header.frame_id = "odom";
+        lf_foot_contact_.name = "LF_LEG";
       } else{
         lf_wrench_.wrench.force.x = 0.0;
         lf_wrench_.wrench.force.y = 0.0;
@@ -76,6 +77,7 @@ private:
         rf_foot_contact_.surface_normal.vector = contact_state->states[0].contact_normals[0];
         rf_foot_contact_.contact_position.vector = contact_state->states[0].contact_positions[0];
         rf_foot_contact_.contact_position.header.frame_id = "odom";
+        rf_foot_contact_.name = "RF_LEG";
 
       } else{
         rf_wrench_.wrench.force.x = 0.0;
@@ -91,7 +93,7 @@ private:
     foot_contacts_.foot_contacts[1] = rf_foot_contact_;
 
   }
-  void leftHindFootBumperCallback(const gazebo_msgs::ContactsStateConstPtr& contact_state)
+  void rightHindFootBumperCallback(const gazebo_msgs::ContactsStateConstPtr& contact_state)
   {
     rh_wrench_.header.frame_id = "rh_foot_Link";
     if(!contact_state->states.empty())
@@ -103,6 +105,7 @@ private:
         rh_foot_contact_.surface_normal.vector = contact_state->states[0].contact_normals[0];
         rh_foot_contact_.contact_position.vector = contact_state->states[0].contact_positions[0];
         rh_foot_contact_.contact_position.header.frame_id = "odom";
+        rh_foot_contact_.name = "RH_LEG";
 
           } else{
         rh_wrench_.wrench.force.x = 0.0;
@@ -117,7 +120,7 @@ private:
     rh_foot_contact_.contact_force = rh_wrench_;
     foot_contacts_.foot_contacts[2] = rh_foot_contact_;
   }
-  void rightHindFootBumperCallback(const gazebo_msgs::ContactsStateConstPtr& contact_state)
+  void leftHindFootBumperCallback(const gazebo_msgs::ContactsStateConstPtr& contact_state)
   {
     lh_wrench_.header.frame_id = "lh_foot_Link";
     if(!contact_state->states.empty())
@@ -129,6 +132,7 @@ private:
         lh_foot_contact_.surface_normal.vector = contact_state->states[0].contact_normals[0];
         lh_foot_contact_.contact_position.vector = contact_state->states[0].contact_positions[0];
         lh_foot_contact_.contact_position.header.frame_id = "odom";
+        lh_foot_contact_.name = "LH_LEG";
 
           } else{
         lh_wrench_.wrench.force.x = 0.0;
