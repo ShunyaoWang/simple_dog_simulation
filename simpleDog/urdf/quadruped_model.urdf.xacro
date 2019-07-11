@@ -1,58 +1,62 @@
-<?xml version="1.0" ?>
-<robot name="simpledog" xmlns:xacro="http://ros.org/wiki/xacro">
-<xacro:arg name="laser_visual"  default="false"/>
-<xacro:arg name="camera_visual" default="false"/>
-<xacro:arg name="imu_visual"    default="false"/>
-<xacro:arg name="kinect_enabled"    default="true"/>
-  <xacro:include filename="$(find simpledog)/urdf/simpledog_gazebo.urdf.xacro" />
-  <xacro:include filename="$(find simpledog)/urdf/joint_gazebo.urdf.xacro" />
-  <xacro:include filename="$(find simpledog)/urdf/kinect.urdf.xacro"/>
-  <xacro:include filename="$(find simpledog)/urdf/foot_sensor_gazebo.urdf.xacro" />
-<!--load kinect urdf-->
-<xacro:if value="$(arg kinect_enabled)">
-  <xacro:kinect_camera prefix="camera" robot_namespace="$(arg robot_namespace)"/>
-  <joint name="kinect_frame_joint" type="fixed">
-    <origin xyz="0.37 0 0.0" rpy="0 0.8 0" />
-    <parent link="base_link"/>
-    <child link="camera_link"/>
-  </joint>
-</xacro:if>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com)
+     Commit Version: 1.5.0-0-g9aa0fdb  Build Version: 1.5.7004.21443
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="quadruped_model" xmlns:xacro="http://ros.org/wiki/xacro">
 
-<!-- simple dog joints macros configure the joint driver and param-->
-<xacro:simpledog_joint joint_prefix="front_left_1_"> </xacro:simpledog_joint>
-<xacro:simpledog_joint joint_prefix="front_left_2_"> </xacro:simpledog_joint>
-<xacro:simpledog_joint joint_prefix="front_left_3_"> </xacro:simpledog_joint>
-<xacro:simpledog_joint joint_prefix="front_right_1_"> </xacro:simpledog_joint>
-<xacro:simpledog_joint joint_prefix="front_right_2_"> </xacro:simpledog_joint>
-<xacro:simpledog_joint joint_prefix="front_right_3_"> </xacro:simpledog_joint>
-<xacro:simpledog_joint joint_prefix="rear_right_1_"> </xacro:simpledog_joint>
-<xacro:simpledog_joint joint_prefix="rear_right_2_"> </xacro:simpledog_joint>
-<xacro:simpledog_joint joint_prefix="rear_right_3_"> </xacro:simpledog_joint>
-<xacro:simpledog_joint joint_prefix="rear_left_1_"> </xacro:simpledog_joint>
-<xacro:simpledog_joint joint_prefix="rear_left_2_"> </xacro:simpledog_joint>
-<xacro:simpledog_joint joint_prefix="rear_left_3_"> </xacro:simpledog_joint>
+  <xacro:arg name="laser_visual"  default="false"/>
+  <xacro:arg name="camera_visual" default="false"/>
+  <xacro:arg name="imu_visual"    default="false"/>
+  <xacro:arg name="kinect_enabled"    default="true"/>
+    <xacro:include filename="$(find simpledog)/urdf/simpledog_gazebo.urdf.xacro" />
+    <xacro:include filename="$(find simpledog)/urdf/joint_gazebo.urdf.xacro" />
+    <xacro:include filename="$(find simpledog)/urdf/kinect.urdf.xacro"/>
+    <xacro:include filename="$(find simpledog)/urdf/foot_sensor_gazebo.urdf.xacro" />
+  <!--load kinect urdf-->
+  <xacro:if value="$(arg kinect_enabled)">
+    <xacro:kinect_camera prefix="camera" robot_namespace="$(arg robot_namespace)"/>
+    <joint name="kinect_frame_joint" type="fixed">
+      <origin xyz="0.5 0.0 0.0" rpy="0 0.8 0" />
+      <parent link="base_link"/>
+      <child link="camera_link"/>
+    </joint>
+  </xacro:if>
 
-<xacro:simpledog_foot_sensors foot_prefix="lf_foot" joint_prefix="front_left_3_"> </xacro:simpledog_foot_sensors>
-<xacro:simpledog_foot_sensors foot_prefix="rf_foot" joint_prefix="front_right_3_"> </xacro:simpledog_foot_sensors>
-<xacro:simpledog_foot_sensors foot_prefix="rh_foot" joint_prefix="rear_right_3_"> </xacro:simpledog_foot_sensors>
-<xacro:simpledog_foot_sensors foot_prefix="lh_foot" joint_prefix="rear_left_3_"> </xacro:simpledog_foot_sensors>
+  <!-- simple dog joints macros configure the joint driver and param-->
+  <xacro:simpledog_joint joint_prefix="front_left_1_"> </xacro:simpledog_joint>
+  <xacro:simpledog_joint joint_prefix="front_left_2_"> </xacro:simpledog_joint>
+  <xacro:simpledog_joint joint_prefix="front_left_3_"> </xacro:simpledog_joint>
+  <xacro:simpledog_joint joint_prefix="front_right_1_"> </xacro:simpledog_joint>
+  <xacro:simpledog_joint joint_prefix="front_right_2_"> </xacro:simpledog_joint>
+  <xacro:simpledog_joint joint_prefix="front_right_3_"> </xacro:simpledog_joint>
+  <xacro:simpledog_joint joint_prefix="rear_right_1_"> </xacro:simpledog_joint>
+  <xacro:simpledog_joint joint_prefix="rear_right_2_"> </xacro:simpledog_joint>
+  <xacro:simpledog_joint joint_prefix="rear_right_3_"> </xacro:simpledog_joint>
+  <xacro:simpledog_joint joint_prefix="rear_left_1_"> </xacro:simpledog_joint>
+  <xacro:simpledog_joint joint_prefix="rear_left_2_"> </xacro:simpledog_joint>
+  <xacro:simpledog_joint joint_prefix="rear_left_3_"> </xacro:simpledog_joint>
+
+  <xacro:simpledog_foot_sensors foot_prefix="lf_foot" joint_prefix="front_left_3_"> </xacro:simpledog_foot_sensors>
+  <xacro:simpledog_foot_sensors foot_prefix="rf_foot" joint_prefix="front_right_3_"> </xacro:simpledog_foot_sensors>
+  <xacro:simpledog_foot_sensors foot_prefix="rh_foot" joint_prefix="rear_right_3_"> </xacro:simpledog_foot_sensors>
+  <xacro:simpledog_foot_sensors foot_prefix="lh_foot" joint_prefix="rear_left_3_"> </xacro:simpledog_foot_sensors>
 
 
-<link
+  <link
     name="base_link">
     <inertial>
       <origin
-        xyz="2.919E-17 -4.8141E-17 9.4163E-19"
+        xyz="0.006699 -0.000736 0.001288"
         rpy="0 0 0" />
       <mass
-        value="24.0" />
+        value="27.801" />
       <inertia
-        ixx="0.74932"
-        ixy="-1.2062E-17"
-        ixz="-2.0602E-16"
-        iyy="2.3017"
-        iyz="-3.8366E-17"
-        izz="2.9675" />
+        ixx="0.263947"
+        ixy="-0.003647"
+        ixz="0.009059"
+        iyy="2.018039"
+        iyz="-0.000762"
+        izz="2.056397" />
     </inertial>
     <visual>
       <origin
@@ -60,12 +64,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/base_link.STL" />
+          filename="package://simpledog/meshes/quadruped/base_link.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="1 1 1 1" />
+          rgba="0 0 1 1" />
       </material>
     </visual>
     <collision>
@@ -74,7 +78,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/base_link.STL" />
+          filename="package://simpledog/meshes/quadruped/base_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -82,17 +86,17 @@
     name="front_left_1_Link">
     <inertial>
       <origin
-        xyz="1.7015E-17 0.012793 -0.00023552"
+        xyz="0.000688 0.10488 -0.003776"
         rpy="0 0 0" />
       <mass
-        value="1.1709" />
+        value="2.9231" />
       <inertia
-        ixx="0.001719"
-        ixy="2.9302E-20"
-        ixz="-1.6433E-19"
-        iyy="0.0013167"
-        iyz="-7.6795E-20"
-        izz="0.0021511" />
+        ixx="0.007845"
+        ixy="-0.00025"
+        ixz="-7.8E-05"
+        iyy="0.005144"
+        iyz="0.000967"
+        izz="0.00794" />
     </inertial>
     <visual>
       <origin
@@ -100,12 +104,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/front_left_1_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_front_left_1_link.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.89804 0.91765 0.92941 1" />
+          rgba="0.79216 0.81961 0.93333 1" />
       </material>
     </visual>
     <collision>
@@ -114,7 +118,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/front_left_1_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_front_left_1_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -122,8 +126,8 @@
     name="front_left_1_joint"
     type="revolute">
     <origin
-      xyz="0.400 0.175 0"
-      rpy="1.57079632679453 1.57051603921301 1.57079632679453" />
+      xyz="0.427 0.075 -0.0095"
+      rpy="0 1.5708 0" />
     <parent
       link="base_link" />
     <child
@@ -135,23 +139,23 @@
       velocity="10"
       lower="-3.0"
       upper="3.0"/>
-      <dynamics damping="0.7"/>
+    <dynamics damping="0.7"/>
   </joint>
   <link
     name="front_left_2_Link">
     <inertial>
       <origin
-        xyz="0.11439 0.00028184 0.05942"
+        xyz="0.18475 3.2E-05 0.12906"
         rpy="0 0 0" />
       <mass
-        value="1.3902" />
+        value="4.2164" />
       <inertia
-        ixx="0.0030209"
-        ixy="-5.6504E-20"
-        ixz="2.8413E-18"
-        iyy="0.026875"
-        iyz="1.5349E-06"
-        izz="0.028484" />
+        ixx="0.00627"
+        ixy="-0.000181"
+        ixz="-8.8E-05"
+        iyy="0.029233"
+        iyz="9.2E-05"
+        izz="0.028163" />
     </inertial>
     <visual>
       <origin
@@ -159,12 +163,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/front_left_2_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_front_left_2_link.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.89804 0.91765 0.92941 1" />
+          rgba="0.79216 0.81961 0.93333 1" />
       </material>
     </visual>
     <collision>
@@ -173,7 +177,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/front_left_2_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_front_left_2_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -192,25 +196,25 @@
       <limit
       effort="300"
       velocity="10"
-      lower="-3.0"
-      upper="3.0"/>
-      <dynamics damping="0.7"/>
+      lower="-7.0"
+      upper="7.0"/>
+    <dynamics damping="0.7"/>
   </joint>
   <link
     name="front_left_3_Link">
     <inertial>
       <origin
-        xyz="0.087825 1.529E-05 -0.016708"
+        xyz="0.20231 0.000199 0.22543"
         rpy="0 0 0" />
       <mass
-        value="1.3523" />
+        value="0.44457" />
       <inertia
-        ixx="0.00053032"
-        ixy="-8.5291E-07"
-        ixz="-0.00020744"
-        iyy="0.0091429"
-        iyz="-8.3738E-08"
-        izz="0.009338" />
+        ixx="0.000397"
+        ixy="-4E-06"
+        ixz="0.000261"
+        iyy="0.0065"
+        iyz="-2.4E-05"
+        izz="0.006214" />
     </inertial>
     <visual>
       <origin
@@ -218,12 +222,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/front_left_3_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_front_left_3_link.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.89804 0.91765 0.92941 1" />
+          rgba="0.79216 0.81961 0.93333 1" />
       </material>
     </visual>
     <collision>
@@ -232,7 +236,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/front_left_3_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_front_left_3_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -240,7 +244,7 @@
     name="front_left_3_joint"
     type="continuous">
     <origin
-      xyz="0.250069171339977 0.000334332414087979 0.11441948932032"
+      xyz="0.308 0 0"
       rpy="0 0 0" />
     <parent
       link="front_left_2_Link" />
@@ -259,17 +263,17 @@
     name="lf_foot_Link">
     <inertial>
       <origin
-        xyz="0.0178251114319979 0 0"
+        xyz="0.022126 -1.2357E-13 0.00049896"
         rpy="0 0 0" />
       <mass
-        value="0.0556193699314689" />
+        value="0.03332" />
       <inertia
-        ixx="1.65498601680364E-05"
-        ixy="-1.00565663974796E-21"
-        ixz="1.3524403015242E-22"
-        iyy="1.23221647613412E-05"
-        iyz="-3.56241096455504E-11"
-        izz="1.25699738250509E-05" />
+        ixx="1.9126E-05"
+        ixy="-1.1072E-18"
+        ixz="-4.1175E-20"
+        iyy="0"
+        iyz="1.5428E-10"
+        izz="1.3678E-05" />
     </inertial>
     <visual>
       <origin
@@ -277,12 +281,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/lf_foot_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_lf_foot_link.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+          rgba="0 0 0 1" />
       </material>
     </visual>
     <collision>
@@ -291,7 +295,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/lf_foot_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_lf_foot_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -299,7 +303,7 @@
     name="lf_foot_joint"
     type="fixed">
     <origin
-      xyz="0.250003601978058 0 -0.0149398452771417"
+      xyz="0.308 0 0.23"
       rpy="0 0 0" />
     <parent
       link="front_left_3_Link" />
@@ -312,17 +316,17 @@
     name="front_right_1_Link">
     <inertial>
       <origin
-        xyz="9.7104E-17 0.012793 1.6653E-16"
+        xyz="-0.000688 0.104882 0.003776"
         rpy="0 0 0" />
       <mass
-        value="1.1709" />
+        value="2.923111" />
       <inertia
-        ixx="0.001719"
-        ixy="-5.88E-19"
-        ixz="-1.7779E-19"
-        iyy="0.0013167"
-        iyz="-2.0543E-19"
-        izz="0.0021511" />
+        ixx="0.007845"
+        ixy="0.00025"
+        ixz="-7.8E-05"
+        iyy="0.005144"
+        iyz="-0.000967"
+        izz="0.00794" />
     </inertial>
     <visual>
       <origin
@@ -330,12 +334,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/front_right_1_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_front_right_1_link.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.89804 0.91765 0.92941 1" />
+          rgba="0.79216 0.81961 0.93333 1" />
       </material>
     </visual>
     <collision>
@@ -344,7 +348,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/front_right_1_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_front_right_1_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -352,8 +356,8 @@
     name="front_right_1_joint"
     type="revolute">
     <origin
-      xyz="0.4 -0.175 0"
-      rpy="1.5708 1.5708 -1.5708" />
+      xyz="0.427 -0.075 -0.0095"
+      rpy="3.1416 1.5708 0" />
     <parent
       link="base_link" />
     <child
@@ -365,23 +369,23 @@
       velocity="10"
       lower="-3.0"
       upper="3.0"/>
-      <dynamics damping="0.7"/>
+    <dynamics damping="0.7"/>
   </joint>
   <link
     name="front_right_2_Link">
     <inertial>
       <origin
-        xyz="0.11432 -5.5511E-17 0.05942"
+        xyz="0.184747 3.2E-05 0.129056"
         rpy="0 0 0" />
       <mass
-        value="1.3902" />
+        value="4.216358" />
       <inertia
-        ixx="0.0030209"
-        ixy="-4.0905E-18"
-        ixz="-8.1586E-10"
-        iyy="0.026875"
-        iyz="2.3399E-19"
-        izz="0.028484" />
+        ixx="0.00627"
+        ixy="-0.000181"
+        ixz="-8.8E-05"
+        iyy="0.029233"
+        iyz="9.2E-05"
+        izz="0.028163" />
     </inertial>
     <visual>
       <origin
@@ -389,12 +393,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/front_right_2_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_front_right_2_link.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.89804 0.91765 0.92941 1" />
+          rgba="0.79216 0.81961 0.93333 1" />
       </material>
     </visual>
     <collision>
@@ -403,7 +407,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/front_right_2_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_front_right_2_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -422,25 +426,25 @@
       <limit
       effort="300"
       velocity="10"
-      lower="-3.0"
-      upper="3.0"/>
-      <dynamics damping="0.7"/>
+      lower="-7.0"
+      upper="7.0"/>
+    <dynamics damping="0.7"/>
   </joint>
   <link
     name="front_right_3_Link">
     <inertial>
       <origin
-        xyz="0.087821 6.7221E-06 -0.016729"
+        xyz="0.202313 0.000199 0.225432"
         rpy="0 0 0" />
       <mass
-        value="1.3523" />
+        value="0.444569" />
       <inertia
-        ixx="0.00053022"
-        ixy="-9.5809E-07"
-        ixz="-0.00020532"
-        iyy="0.0091429"
-        iyz="1.6437E-08"
-        izz="0.0093381" />
+        ixx="0.000397"
+        ixy="-4E-06"
+        ixz="0.000261"
+        iyy="0.0065"
+        iyz="-2.4E-05"
+        izz="0.006214" />
     </inertial>
     <visual>
       <origin
@@ -448,12 +452,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/front_right_3_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_front_right_3_link.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.89804 0.91765 0.92941 1" />
+          rgba="0.79216 0.81961 0.93333 1" />
       </material>
     </visual>
     <collision>
@@ -462,7 +466,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/front_right_3_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_front_right_3_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -470,7 +474,7 @@
     name="front_right_3_joint"
     type="continuous">
     <origin
-      xyz="0.249999996334044 0 0.114419764295838"
+      xyz="0.308 0 0"
       rpy="0 0 0" />
     <parent
       link="front_right_2_Link" />
@@ -483,23 +487,23 @@
       velocity="10"
       lower="-3.0"
       upper="3.0"/>
-      <dynamics damping="0.7"/>
+    <dynamics damping="0.7"/>
   </joint>
   <link
     name="rf_foot_Link">
     <inertial>
       <origin
-        xyz="0.017825 0 0"
+        xyz="0.022126 -4.4892E-13 -1.0375E-06"
         rpy="0 0 0" />
       <mass
-        value="0.055619" />
+        value="0.03332" />
       <inertia
-        ixx="1.655E-05"
-        ixy="2.2089E-21"
-        ixz="-1.1638E-21"
-        iyy="1.2322E-05"
-        iyz="-2.0835E-21"
-        izz="1.257E-05" />
+        ixx="1.9126E-05"
+        ixy="-1.0162E-18"
+        ixz="-1.1377E-19"
+        iyy="1.3677E-05"
+        iyz="-6.5798E-11"
+        izz="1.3678E-05" />
     </inertial>
     <visual>
       <origin
@@ -507,12 +511,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/rf_foot_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Orgin_rf_foot_link.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.29804 0.29804 0.29804 1" />
+          rgba="0 0 0 1" />
       </material>
     </visual>
     <collision>
@@ -521,16 +525,16 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/rf_foot_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Orgin_rf_foot_link.STL" />
       </geometry>
     </collision>
   </link>
   <joint
-    name="rf_foot_joint"
+    name="rf_foot_Link"
     type="fixed">
     <origin
-      xyz="0.25 0 -0.0149999996816874"
-      rpy="-0.00020601381558494 5.03069808033274E-17 -4.99600361081321E-16" />
+      xyz="0.308 0 0.22053"
+      rpy="0 0 0" />
     <parent
       link="front_right_3_Link" />
     <child
@@ -542,17 +546,17 @@
     name="rear_left_1_Link">
     <inertial>
       <origin
-        xyz="5.7896E-17 0.012793 2.7756E-16"
+        xyz="-0.000688 0.10488 0.003776"
         rpy="0 0 0" />
       <mass
-        value="1.1709" />
+        value="2.9231" />
       <inertia
-        ixx="0.001719"
-        ixy="-2.0371E-19"
-        ixz="5.3128E-21"
-        iyy="0.0013167"
-        iyz="-3.3901E-19"
-        izz="0.0021511" />
+        ixx="0.007845"
+        ixy="0.0025"
+        ixz="-7.8E-05"
+        iyy="0.005144"
+        iyz="-0.000967"
+        izz="0.00794" />
     </inertial>
     <visual>
       <origin
@@ -560,12 +564,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/rear_left_1_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_rear_left_1_link.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.89804 0.91765 0.92941 1" />
+          rgba="0.79216 0.81961 0.93333 1" />
       </material>
     </visual>
     <collision>
@@ -574,7 +578,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/rear_left_1_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_rear_left_1_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -582,8 +586,8 @@
     name="rear_left_1_joint"
     type="revolute">
     <origin
-      xyz="-0.4 0.175 0"
-      rpy="1.57079632679488 1.56519932988528 1.57079632679488" />
+      xyz="-0.427 0.075 -0.0095"
+      rpy="0 1.5708 0" />
     <parent
       link="base_link" />
     <child
@@ -595,23 +599,23 @@
       velocity="10"
       lower="-3.0"
       upper="3.0"/>
-      <dynamics damping="0.7"/>
+    <dynamics damping="0.7"/>
   </joint>
   <link
     name="rear_left_2_Link">
     <inertial>
       <origin
-        xyz="0.11432 0 0.05942"
+        xyz="0.184717 3.2E-05 0.129056"
         rpy="0 0 0" />
       <mass
-        value="1.3902" />
+        value="4.216358" />
       <inertia
-        ixx="0.0030209"
-        ixy="-1.8526E-18"
-        ixz="2.5242E-19"
-        iyy="0.026875"
-        iyz="3.7608E-19"
-        izz="0.028484" />
+        ixx="0.00627"
+        ixy="-0.000181"
+        ixz="-8.8E-05"
+        iyy="0.029233"
+        iyz="9.2E-05"
+        izz="0.028163" />
     </inertial>
     <visual>
       <origin
@@ -619,12 +623,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/rear_left_2_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_rear_left_2_link.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.89804 0.91765 0.92941 1" />
+          rgba="0.79216 0.81961 0.93333 1" />
       </material>
     </visual>
     <collision>
@@ -633,7 +637,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/rear_left_2_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_rear_left_2_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -642,7 +646,7 @@
     type="continuous">
     <origin
       xyz="0 0 0"
-      rpy="-1.5707963267949 0 0" />
+      rpy="-1.5708 0 0" />
     <parent
       link="rear_left_1_Link" />
     <child
@@ -652,25 +656,25 @@
       <limit
       effort="300"
       velocity="10"
-      lower="-3.0"
-      upper="3.0"/>
-      <dynamics damping="0.7"/>
+      lower="-7.0"
+      upper="7.0"/>
+    <dynamics damping="0.7"/>
   </joint>
   <link
     name="rear_left_3_Link">
     <inertial>
       <origin
-        xyz="0.087821 5.7424E-05 -0.016729"
+        xyz="0.202313 0.000199 0.225432"
         rpy="0 0 0" />
       <mass
-        value="1.3523" />
+        value="0.444569" />
       <inertia
-        ixx="0.00053022"
-        ixy="-3.3581E-07"
-        ixz="-0.00020532"
-        iyy="0.0091429"
-        iyz="-5.7512E-07"
-        izz="0.0093381" />
+        ixx="0.000397"
+        ixy="-4E-06"
+        ixz="-0.000261"
+        iyy="0.0065"
+        iyz="-2.4E-05"
+        izz="0.006214" />
     </inertial>
     <visual>
       <origin
@@ -678,12 +682,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/rear_left_3_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_rear_left_3_link.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.89804 0.91765 0.92941 1" />
+          rgba="0.79216 0.81961 0.93333 1" />
       </material>
     </visual>
     <collision>
@@ -692,7 +696,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/rear_left_3_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_rear_left_3_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -700,7 +704,7 @@
     name="rear_left_3_joint"
     type="continuous">
     <origin
-      xyz="0.25 0 0.114419756285561"
+      xyz="0.308 0 0"
       rpy="0 0 0" />
     <parent
       link="rear_left_2_Link" />
@@ -713,23 +717,23 @@
       velocity="10"
       lower="-3.0"
       upper="3.0"/>
-      <dynamics damping="0.7"/>
+    <dynamics damping="0.7"/>
   </joint>
   <link
     name="lh_foot_Link">
     <inertial>
       <origin
-        xyz="0.017825 -1.1102E-16 5.5511E-17"
+        xyz="0.022126 -7.7827E-14 0.00049896"
         rpy="0 0 0" />
       <mass
-        value="0.055619" />
+        value="0.03332" />
       <inertia
-        ixx="1.655E-05"
-        ixy="3.2567E-22"
-        ixz="-9.7111E-22"
-        iyy="1.2322E-05"
-        iyz="5.4896E-20"
-        izz="1.257E-05" />
+        ixx="1.9126E-05"
+        ixy="-9.3607E-19"
+        ixz="2.2915E-19"
+        iyy="1.3677E-05"
+        iyz="-2.7943E-10"
+        izz="1.3678E-05" />
     </inertial>
     <visual>
       <origin
@@ -737,12 +741,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/rh_foot_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_rl_foot_link.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.29804 0.29804 0.29804 1" />
+          rgba="0 0 0 1" />
       </material>
     </visual>
     <collision>
@@ -751,7 +755,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/rh_foot_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_rl_foot_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -759,7 +763,7 @@
     name="lh_foot_joint"
     type="fixed">
     <origin
-      xyz="0.24742286767759 0.000379574544590811 -0.015"
+      xyz="0.308 0 0.23"
       rpy="0 0 0" />
     <parent
       link="rear_left_3_Link" />
@@ -772,17 +776,17 @@
     name="rear_right_1_Link">
     <inertial>
       <origin
-        xyz="-6.2968E-06 0.012793 0.0003022"
+        xyz="0.000688 0.104882 0.003776"
         rpy="0 0 0" />
       <mass
-        value="1.1709" />
+        value="2.923111" />
       <inertia
-        ixx="0.001719"
-        ixy="1.9803E-07"
-        ixz="-1.4315E-19"
-        iyy="0.0013167"
-        iyz="-1.2614E-19"
-        izz="0.0021511" />
+        ixx="0.007845"
+        ixy="-0.00025"
+        ixz="7.8E-05"
+        iyy="0.005144"
+        iyz="0.000967"
+        izz="0.00794" />
     </inertial>
     <visual>
       <origin
@@ -790,12 +794,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/rear_right_1_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_rear_right_1_link.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.89804 0.91765 0.92941 1" />
+          rgba="0.79216 0.81961 0.93333 1" />
       </material>
     </visual>
     <collision>
@@ -804,7 +808,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/rear_right_1_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_rear_right_1_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -812,8 +816,8 @@
     name="rear_right_1_joint"
     type="revolute">
     <origin
-      xyz="-0.4 -0.175 0"
-      rpy="1.5708 1.5708 -1.5708" />
+      xyz="-0.427 -0.075 -0.0095"
+      rpy="3.1416 1.5708 0" />
     <parent
       link="base_link" />
     <child
@@ -825,23 +829,23 @@
       velocity="10"
       lower="-3.0"
       upper="3.0"/>
-      <dynamics damping="0.7"/>
+    <dynamics damping="0.7"/>
   </joint>
   <link
     name="rear_right_2_Link">
     <inertial>
       <origin
-        xyz="0.11443 -8.407E-05 0.05942"
+        xyz="0.184747 3.2E-05 0.129056"
         rpy="0 0 0" />
       <mass
-        value="1.3902" />
+        value="4.216358" />
       <inertia
-        ixx="0.0030209"
-        ixy="-4.1489E-12"
-        ixz="-1.2337E-09"
-        iyy="0.026876"
-        iyz="5.4085E-06"
-        izz="0.028484" />
+        ixx="0.00627"
+        ixy="-0.000181"
+        ixz="-8.8E-05"
+        iyy="0.029233"
+        iyz="9.2E-05"
+        izz="0.028163" />
     </inertial>
     <visual>
       <origin
@@ -849,12 +853,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/rear_right_2_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_rear_right_2_link.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.89804 0.91765 0.92941 1" />
+          rgba="0.79216 0.81961 0.93333 1" />
       </material>
     </visual>
     <collision>
@@ -863,7 +867,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/rear_right_2_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_rear_right_2_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -882,25 +886,25 @@
       <limit
       effort="300"
       velocity="10"
-      lower="-3.0"
-      upper="3.0"/>
-      <dynamics damping="0.7"/>
+      lower="-7.0"
+      upper="7.0"/>
+    <dynamics damping="0.7"/>
   </joint>
   <link
     name="rear_right_3_Link">
     <inertial>
       <origin
-        xyz="0.087821 6.0067E-06 -0.016729"
+        xyz="0.202313 0.000199 0.225432"
         rpy="0 0 0" />
       <mass
-        value="1.3523" />
+        value="0.444569" />
       <inertia
-        ixx="0.00053022"
-        ixy="-9.6687E-07"
-        ixz="-0.00020532"
-        iyy="0.0091429"
-        iyz="2.4784E-08"
-        izz="0.0093381" />
+        ixx="0.000397"
+        ixy="-4E-06"
+        ixz="0.000261"
+        iyy="0.0065"
+        iyz="-2.4E-05"
+        izz="0.006214" />
     </inertial>
     <visual>
       <origin
@@ -908,12 +912,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/rear_right_3_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_rear_right_3_link.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.89804 0.91765 0.92941 1" />
+          rgba="0.79216 0.81961 0.93333 1" />
       </material>
     </visual>
     <collision>
@@ -922,7 +926,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/rear_right_3_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_rear_right_3_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -930,7 +934,7 @@
     name="rear_right_3_joint"
     type="continuous">
     <origin
-      xyz="0.25010358767993 0.0001008844556592 0.114420076111023"
+      xyz="0.308 0 0"
       rpy="0 0 0" />
     <parent
       link="rear_right_2_Link" />
@@ -943,23 +947,23 @@
       velocity="10"
       lower="-3.0"
       upper="3.0"/>
-      <dynamics damping="0.7"/>
+    <dynamics damping="0.7"/>
   </joint>
   <link
     name="rh_foot_Link">
     <inertial>
       <origin
-        xyz="0.017825 -1.1102E-16 0"
+        xyz="0.022126 -1.6187E-13 -1E-06"
         rpy="0 0 0" />
       <mass
-        value="0.055619" />
+        value="0.03332" />
       <inertia
-        ixx="1.655E-05"
-        ixy="2.3509E-21"
-        ixz="-1.4161E-21"
-        iyy="1.2322E-05"
-        iyz="6.8491E-22"
-        izz="1.257E-05" />
+        ixx="1.9126E-05"
+        ixy="-9.5089E-19"
+        ixz="6.7668E-20"
+        iyy="1.3677E-05"
+        iyz="-2.7242E-10"
+        izz="1.3678E-05" />
     </inertial>
     <visual>
       <origin
@@ -967,12 +971,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/lh_foot_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_rr_foot_link.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.29804 0.29804 0.29804 1" />
+          rgba="0 0 0 1" />
       </material>
     </visual>
     <collision>
@@ -981,7 +985,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://simpledog/meshes/lh_foot_Link.STL" />
+          filename="package://simpledog/meshes/quadruped/Origin_rr_foot_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -989,7 +993,7 @@
     name="rh_foot_joint"
     type="fixed">
     <origin
-      xyz="0.24968 0.00033355 -0.015"
+      xyz="0.308 0 0.22053"
       rpy="0 0 0" />
     <parent
       link="rear_right_3_Link" />
@@ -998,5 +1002,4 @@
     <axis
       xyz="0 0 0" />
   </joint>
-
 </robot>
